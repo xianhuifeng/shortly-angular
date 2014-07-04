@@ -11,5 +11,13 @@ angular.module('shortly.links', [])
     });
   };
 
+  $scope.updateLink = function (code) {
+    Links.updateLink(code).then(function (resp) {
+      $scope.data.links = resp;
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
+
   $scope.getLinks();
 });

@@ -1,10 +1,11 @@
 <div id='container' ng-controller='LinksController'>
   <a href="#/shorten">Create a shortened link</a>
+  <input ng-model='linksearch'>
   <ul>
-    <li ng-repeat="link in data.links">
-    <a ng-href='{{ link.url }}'>
-     {{ link.title }}{{ link.code }} {{ link.visits }}
-    </a>
+    <li class='link' ng-repeat="link in data.links | orderBy : 'visits' : 'reverse' | filter:linksearch">
+    <!-- <a ng-href='{{link.url}}'> delete reason: not go to server change visit -->
+    <span class='title'> Title: {{ link.title }}</span><span class='info'>Code: {{ link.code }}</span> <span class='visits'>Number of visits: <span class='count'>{{ link.visits }}</span></span>
+
     </li>
   </ul>
 </div>
